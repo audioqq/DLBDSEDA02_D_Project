@@ -22,10 +22,6 @@ data = pd.read_csv('justdoit_tweets_2018_09_07_2.csv', usecols=['tweet_full_text
 
 # 2. Daten vorverarbeiten
 def clean_text(text):
-
-    # Entfernt Sonderzeichen und Stoppwörter aus dem Text.
-
-
     # Sonderzeichen entfernen bis auf #
     text = re.sub('[^a-zA-Z# ]', ' ', text)
     # Kleinbuchstaben umwandeln
@@ -45,7 +41,6 @@ def clean_text(text):
 # Token Pattern, um Hashtags als Tokens zu berücksichtigen
 token_pattern = r"(?u)\b\w\w+\b|#\w+"
 
-
 data['cleaned_text'] = data['tweet_full_text'].apply(lambda x: clean_text(x))
 
 # 3. Text in numerische Vektoren umwandeln
@@ -56,8 +51,6 @@ doc_term_matrix = cv.fit_transform(data['cleaned_text'])
 # Latent Dirichlet Allocation (LDA)
 
 #multiprocessing
-
-
 def fit_lda(n_topics, doc_term_matrix):
         lda = LatentDirichletAllocation(n_components=n_topics, random_state=42)
         lda.fit(doc_term_matrix)
@@ -90,8 +83,6 @@ for i, topic in enumerate(best_lda_model.components_):
     sorted_words = sorted(word_probs, key=lambda x: x[1], reverse=True)[:10]
     print([word[0] for word in sorted_words])
     print()
-
-
 # 5. Sentimentanalyse durchführen
 def get_sentiment(text):
 
@@ -100,7 +91,6 @@ def get_sentiment(text):
     blob = TextBlob(text)
     sentiment = blob.sentiment
     return sentiment.polarity, sentiment.subjectivity
-
 
 data['sentiment'] = data['cleaned_text'].apply(lambda x: get_sentiment(x))
 
@@ -129,7 +119,6 @@ plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
 plt.show()
 """
-
 
 print("\n\n")
 
