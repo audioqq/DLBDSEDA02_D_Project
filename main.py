@@ -109,7 +109,7 @@ print(f'Negative bewertungen: {neg_count}')
 # Erstellen Sie eine Liste aller Wörter in den Tweets
 all_words = ' '.join(data['cleaned_text'])
 
-# Erstellen Sie eine WordCloud
+# Erstellen einer WordCloud
 """
 wordcloud = WordCloud(width=800, height=500, random_state=42, background_color='white', stopwords=stopwords.words('english')).generate(all_words)
 
