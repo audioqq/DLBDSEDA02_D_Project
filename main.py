@@ -106,7 +106,7 @@ for polarity, subjectivity in data['sentiment']:
 print(f'Positive bewertungen: {pos_count}')
 print(f'Negative bewertungen: {neg_count}')
 
-# Erstellen Sie eine Liste aller Wörter in den Tweets
+# Erstellen einer Liste aller Wörter in den Tweets
 all_words = ' '.join(data['cleaned_text'])
 
 # Erstellen einer WordCloud
