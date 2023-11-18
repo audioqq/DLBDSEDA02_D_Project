@@ -81,7 +81,7 @@ for i, topic in enumerate(best_lda_model.components_):
     print(f'Top 10 Wörter nach Themen #{i}:')
     word_probs = [(word, topic[index]) for word, index in vocab.items()]
     sorted_words = sorted(word_probs, key=lambda x: x[1], reverse=True)[:10]
-    print([word[0] for word in sorted_words])
+    print("LDA:", [word[0] for word in sorted_words])
     print()
 # 5. Sentimentanalyse durchführen
 def get_sentiment(text):
@@ -144,7 +144,7 @@ for doc_index, topic_probs in enumerate(transformed_bigram):
 
 # Bigramme, Durchschnittssentiment und kombinierter Score für jedes Thema ausgeben
 for i, topic in enumerate(lda_bigram.components_):
-    print(f'Thema #{i + 1}:')
+    print(f'Top 10 nach Themen #{i + 1}:')
     bigram_probs = [(bigram, topic[index]) for bigram, index in vocab_bigram.items()]
     sorted_bigrams = sorted(bigram_probs, key=lambda x: x[1], reverse=True)[:10]
     print("Bigramme:", ", ".join([bigram[0] for bigram in sorted_bigrams]))
